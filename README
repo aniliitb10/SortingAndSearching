@@ -1,0 +1,17 @@
+Compared the performance for sorting 224,714 words (source of input file: https://introcs.cs.princeton.edu),
+following is conclusion:
+i)   Quick3Way is competitive with std::sort when input is random (gets beaten by around 10%)
+ii)  For sorted input, Quick3Way is too expensive
+iii) Quick3WayString beats std::sort with both random/sorted inputs!
+iv)  Quick3WayString sorts's performance is similar for both sorted/random inputs
+
+Following is a brief overview of performance numbers (not from micro-benchmarking but from google tests):
+1) Input type: Sorted, sample size: 224,714
+   std::sort      : 34 ms
+   Quick3Way      : 948 ms
+   Quick3WayString: 32 ms
+
+2) Input type: Random, sample size: 224,714
+   std::sort      : 56 ms
+   Quick3Way      : 67 ms
+   Quick3WayString: 33 ms
