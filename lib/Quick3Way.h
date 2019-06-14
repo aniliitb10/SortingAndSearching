@@ -1,42 +1,39 @@
 #pragma once
 
-#include <iterator>
-#include <cstddef>
-#include <vector>
-#include <algorithm>
-
-// This is general and is not exploiting std::string
 class Quick3Way
 {
 public:
-  using List = std::vector<std::string>;
+  Quick3Way() = delete;
 
-  static void sort(List& list_)
+  template <typename Itr>
+  static void sort(const Itr& begin_, const Itr& end_)
   {
-    sort(list_, 0, list_.size() - 1);
-    /*if (!std::is_sorted(std::begin(list_), std::end(list_)))
-    {
-      throw std::runtime_error("Still not sorted!");
-    }*/
+    auto size = std::distance(begin_, end_);
+    sortImpl(begin_, static_cast<decltype(size)>(0), size-1);
   }
 
 private:
-  static void sort(List& list_, const size_t lo_, const size_t hi_)
+  template <typename Itr, typename SizeType = typename std::iterator_traits<Itr>::difference_type>
+  static void sortImpl(const Itr& begin_, SizeType lo_, SizeType hi_)
   {
-    static constexpr size_t max_hi = std::numeric_limits<size_t>::max();
-    if (hi_ <= lo_ || hi_ == max_hi) return;
+    if (lo_ >= hi_) return;
 
-    size_t lt = lo_, gt = hi_, i = lo_ + 1;
-    const std::string value = list_[lo_];
+    SizeType lt = lo_;
+    SizeType gt = hi_;
+    SizeType index = lo_ + 1;
+    const auto v = at(begin_, lo_);
 
-    while (i <= gt)
+    while(index <= gt)
     {
-      if      (list_[i] < value) std::swap(list_[i++], list_[lt++]);
-      else if (list_[i] > value) std::swap(list_[i], list_[gt--]);
-      else                       i++;
+      const auto& ai = at(begin_, index);
+
+      if      (ai < v) std::swap(at(begin_, index++), at(begin_, lt++));
+      else if (v < ai) std::swap(at(begin_, index), at(begin_, gt--));
+      else             index++;
     }
 
-    sort(list_, lo_, lt-1);
-    sort(list_, gt+1, hi_);
+    sortImpl(begin_, lo_, lt-1);
+    sortImpl(begin_, gt+1, hi_);
+    assert(isSorted(std::next(begin_, lo_), std::next(begin_, hi_)));
   }
 };
