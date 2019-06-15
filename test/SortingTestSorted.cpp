@@ -1,4 +1,4 @@
-#include "../lib/Quick3Way.h"
+#include "../lib/Quick3WayVector.h"
 #include "../lib/Quick3WayString.h"
 #include "Util.h"
 
@@ -26,7 +26,7 @@ struct Quick3WayTestSorted : public ::testing::Test
 
 TEST_F(Quick3WayTestSorted, PerfTest)
 {
-  Quick3Way::sort(_words);
+  Quick3WayVector::sort(_words);
 }
 
 struct Quick3WayStringTestSorted : public ::testing::Test

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Util.h"
+
 class Quick3Way
 {
 public:
@@ -13,14 +15,14 @@ public:
   }
 
 private:
-  template <typename Itr, typename SizeType = typename std::iterator_traits<Itr>::difference_type>
-  static void sortImpl(const Itr& begin_, SizeType lo_, SizeType hi_)
+  template <typename Itr, typename DiffType = ItrDiffType<Itr>>
+  static void sortImpl(const Itr& begin_, DiffType lo_, DiffType hi_)
   {
     if (lo_ >= hi_) return;
 
-    SizeType lt = lo_;
-    SizeType gt = hi_;
-    SizeType index = lo_ + 1;
+    auto lt = lo_;
+    auto gt = hi_;
+    auto index = lo_ + 1;
     const auto v = at(begin_, lo_);
 
     while(index <= gt)
@@ -34,6 +36,6 @@ private:
 
     sortImpl(begin_, lo_, lt-1);
     sortImpl(begin_, gt+1, hi_);
-    assert(isSorted(std::next(begin_, lo_), std::next(begin_, hi_)));
+//    assert(isSorted(std::next(begin_, lo_), std::next(begin_, hi_)));
   }
 };

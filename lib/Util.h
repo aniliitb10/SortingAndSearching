@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iterator>
 #include <iostream>
 
@@ -9,6 +11,12 @@ static decltype(auto) at(const Itr& itr, size_t index_)
 {
   return *std::next(itr, index_);
 }
+
+template <typename Itr>
+using ItrDiffType = typename std::iterator_traits<Itr>::difference_type;
+
+template <typename Itr>
+using ItrValueType = typename std::iterator_traits<Itr>::value_type;
 
 template <typename Itr>
 static bool isSorted(const Itr& begin_, const Itr& end_)
