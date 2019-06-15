@@ -1,5 +1,7 @@
 #pragma once
 
+#include <random>
+
 #include "Util.h"
 
 class Quick3Way
@@ -10,6 +12,11 @@ public:
   template <typename Itr>
   static void sort(const Itr& begin_, const Itr& end_)
   {
+    // Shuffling to ensure competitive performance even with sorted list
+    std::random_device rd{};
+    std::mt19937_64 engine{rd()};
+    std::shuffle(begin_, end_, engine);
+
     auto size = std::distance(begin_, end_);
     sortImpl(begin_, static_cast<decltype(size)>(0), size-1);
   }
@@ -36,6 +43,5 @@ private:
 
     sortImpl(begin_, lo_, lt-1);
     sortImpl(begin_, gt+1, hi_);
-//    assert(isSorted(std::next(begin_, lo_), std::next(begin_, hi_)));
   }
 };

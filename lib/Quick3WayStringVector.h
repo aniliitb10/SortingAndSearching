@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-class Quick3WayString
+class Quick3WayStringVector
 {
 public:
   using List = std::vector<std::string>;

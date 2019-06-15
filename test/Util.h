@@ -23,23 +23,6 @@ struct Util
     return strings;
   }
 
-  class RandomGen
-  {
-  public:
-    explicit RandomGen(List list_):
-    _words(std::move(list_))
-    {
-      std::shuffle(std::begin(_words), std::end(_words), g);
-    }
-
-    const List& getRandomizedList() const { return _words; }
-
-  private:
-    std::random_device rd;
-    std::mt19937 g{rd()};
-    List _words;
-  };
-
   template <typename OItr, typename ValueType = ItrValueType<OItr>>
   static void randomNumGenerator(OItr oItr_, size_t count_, ValueType from_, ValueType end_)
   {
@@ -53,3 +36,4 @@ struct Util
     }
   }
 };
+

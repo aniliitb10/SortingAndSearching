@@ -1,17 +1,16 @@
-Compared the performance for sorting 224,714 words (source of input file: https://introcs.cs.princeton.edu),
-following is conclusion:
-i)   Quick3Way is competitive with std::sort when input is random (gets beaten by around 10%)
-ii)  For sorted input, Quick3Way is too expensive
-iii) Quick3WayString beats std::sort with both random/sorted inputs!
-iv)  Quick3WayString sorts's performance is similar for both sorted/random inputs
+------------------------------------------------------------------------------------------------
+Benchmark                                                      Time             CPU   Iterations
+------------------------------------------------------------------------------------------------
+# Input source: NOT Sorted, size: 10M
+SortingBenchmark/StdSortTest                          2425883577 ns   2425914635 ns            1
+SortingBenchmark/MyQuickSortTest                      3246110606 ns   3246121062 ns            1
+SortingBenchmark/MyQuick3WayTest                      4251596659 ns   4251623607 ns            1
+SortingBenchmark/MergeSortTest                        4978530454 ns   4978475577 ns            1
+SortingBenchmark/Quick3WayStringVectorTest            1624491445 ns   1624515657 ns            1
 
-Following is a brief overview of performance numbers (not from micro-benchmarking but from google tests):
-1) Input type: Sorted, sample size: 224,714
-   std::sort      : 34 ms
-   Quick3Way      : 948 ms
-   Quick3WayString: 32 ms
-
-2) Input type: Random, sample size: 224,714
-   std::sort      : 56 ms
-   Quick3Way      : 67 ms
-   Quick3WayString: 33 ms
+# Input source: SORTED, size: 20k
+SortingBenchmarkSortedInput/StdSortTest                  2323190 ns      2323200 ns          301
+SortingBenchmarkSortedInput/MyQuickSortTest              4185586 ns      4185667 ns          167
+SortingBenchmarkSortedInput/MyQuick3WayTest              5544944 ns      5545027 ns          125
+SortingBenchmarkSortedInput/MergeSortTest                5710760 ns      5710873 ns          123
+SortingBenchmarkSortedInput/Quick3WayStringVectorTest    1793442 ns      1793468 ns          396
