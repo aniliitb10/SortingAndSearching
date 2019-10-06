@@ -1,17 +1,17 @@
 #include <benchmark/benchmark.h>
-#include "../lib/QuickSort.h"
-#include "../lib/Quick3Way.h"
-#include "../lib/Quick3WayStringVector.h"
-#include "../lib/Quick3WayVector.h"
-#include "../lib/MergeSort.h"
-#include "../lib/Util.h"
+#include "../lib/sorting/QuickSort.h"
+#include "../lib/sorting/Quick3Way.h"
+#include "../lib/sorting/Quick3WayStringVector.h"
+#include "../lib/sorting/Quick3WayVector.h"
+#include "../lib/sorting/MergeSort.h"
+#include "../lib/sorting/Util.h"
 
 #include "Util.h"
 #include <algorithm>
 
 struct SortingBenchmarkSortedInput : public benchmark::Fixture
 {
-  List _strs = Util::readFile("/home/anil/CLionProjects/SortingAndSearching/test/words.txt");
+  const List _strs = Util::readFile("../test/words.txt");
 };
 
 BENCHMARK_F(SortingBenchmarkSortedInput, StdSortTest)(benchmark::State& state)

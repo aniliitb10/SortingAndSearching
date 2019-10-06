@@ -39,16 +39,16 @@ private:
     // merge [lo..mid] and [mid+1..hi]
     auto leftBegin = lo_, rightBegin = mid_ + 1;
 
-    std::copy(std::next(begin_, lo_), std::next(begin_, hi_ + 1), std::next(std::begin(aux_), lo_));
+    std::move(std::next(begin_, lo_), std::next(begin_, hi_ + 1), std::next(std::begin(aux_), lo_));
 
     for (auto index = lo_; index <= hi_; ++index)
     {
       auto& target  = at(begin_, index);
 
-      if      (leftBegin > mid_)  target = aux_[rightBegin++];
-      else if (rightBegin > hi_)  target = aux_[leftBegin++];
-      else if (aux_[leftBegin] < aux_[rightBegin]) target = aux_[leftBegin++]; // keeps it stable
-      else                        target = aux_[rightBegin++];
+      if      (leftBegin > mid_)  target = std::move(aux_[rightBegin++]);
+      else if (rightBegin > hi_)  target = std::move(aux_[leftBegin++]);
+      else if (aux_[leftBegin] < aux_[rightBegin]) target = std::move(aux_[leftBegin++]); // keeps it stable
+      else                        target = std::move(aux_[rightBegin++]);
     }
   }
 };

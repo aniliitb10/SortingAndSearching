@@ -8,6 +8,10 @@ SortingBenchmark/MyQuick3WayTest                      4251596659 ns   4251623607
 SortingBenchmark/MergeSortTest                        4978530454 ns   4978475577 ns            1
 SortingBenchmark/Quick3WayStringVectorTest            1624491445 ns   1624515657 ns            1
 
+# Input source: NOT Sorted, size: 800K, 550787 Unique numbers from 0 to 1M
+SortingBenchmark/CountingSortTest                        7847384 ns      7845127 ns           86
+SortingBenchmark/StdSortWithCountingSortSampleTest      12101371 ns     12102239 ns           48
+
 # Input source: SORTED, size: 20k
 SortingBenchmarkSortedInput/StdSortTest                  2323190 ns      2323200 ns          301
 SortingBenchmarkSortedInput/MyQuickSortTest              4185586 ns      4185667 ns          167

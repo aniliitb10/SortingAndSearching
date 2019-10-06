@@ -19,22 +19,6 @@ inline static decltype(auto) at(const Itr& itr, DiffType index_)
 }
 
 template <typename Itr>
-static bool isSorted(const Itr& begin_, const Itr& end_)
-{
-  Itr current = begin_;
-  Itr next = std::next(begin_);
-  while (next != end_)
-  {
-    if (*(current++) > *(next++))
-    {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-template <typename Itr>
 static void print(Itr begin_, Itr end_)
 {
   while(begin_ != end_)
