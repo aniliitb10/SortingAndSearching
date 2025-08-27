@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <typename Itr>
-constexpr bool is_random_access_itr = std::is_same_v<std::iterator_traits<Itr>::iterator_category,std::random_access_iterator_tag>;
+constexpr bool is_random_access_itr = std::is_same_v<typename std::iterator_traits<Itr>::iterator_category,std::random_access_iterator_tag>;
 
 template <typename Itr>
 using ItrDiffType = typename std::iterator_traits<Itr>::difference_type;

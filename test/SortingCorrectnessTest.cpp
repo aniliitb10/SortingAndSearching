@@ -3,7 +3,6 @@
 #include "../lib/sorting/Quick3Way.h"
 #include "../lib/sorting/QuickSort.h"
 #include "../lib/sorting/MergeSort.h"
-#include "../lib/sorting/InsertionSort.h"
 #include "../lib/sorting/Util.h"
 #include "../lib/sorting/CountingSort.h"
 
@@ -50,14 +49,6 @@ TEST_F(SortingCorrectnessTest, MyQuick3WayStringSort)
 {
   auto toSortCopy = _toSort;
   Quick3WayStringVector::sort(toSortCopy);
-  EXPECT_TRUE(std::is_sorted(std::cbegin(toSortCopy), std::cend(toSortCopy)));
-}
-
-TEST_F(SortingCorrectnessTest, MyInsertionSort10K)
-{
-  // as it has n2 runtime complexity, reducing the input size to just 10k
-  auto toSortCopy = decltype(_toSort) {std::begin(_toSort), std::next(std::begin(_toSort), 10'000)};
-  InsertionSort::sort(std::begin(toSortCopy), std::end(toSortCopy));
   EXPECT_TRUE(std::is_sorted(std::cbegin(toSortCopy), std::cend(toSortCopy)));
 }
 

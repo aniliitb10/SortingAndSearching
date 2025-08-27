@@ -3,7 +3,6 @@
 #include <random>
 
 #include "Util.h"
-#include "InsertionSort.h"
 
 class QuickSort
 {
@@ -26,15 +25,7 @@ private:
   template <typename Itr, typename DiffType = ItrDiffType<Itr>>
   static void sortImpl(const Itr& begin_, DiffType lo_, DiffType hi_)
   {
-    static constexpr DiffType INSERTION_SORT_CUTOFF = 16;
-
     if (lo_ >= hi_) return;
-
-    if ((hi_-lo_) <= INSERTION_SORT_CUTOFF)
-    {
-      InsertionSort::sort(std::next(begin_, lo_), std::next(begin_, hi_ + 1));
-      return;
-    }
 
     auto pi = partition(begin_, lo_, hi_);
     sortImpl(begin_, lo_, pi-1);
@@ -46,11 +37,11 @@ private:
   {
     auto i = lo_;
     auto j = hi_ + 1;
-    const auto v = at(begin_, lo_); // must not be reference
+    const auto v = at(begin_, lo_); // must not be referenced
 
     while(true)
     {
-      while(at(begin_, ++i) < v)
+      while(at(begin_, ++i) < v) // item at i is the
       {
         if (i == hi_) break;
       }
